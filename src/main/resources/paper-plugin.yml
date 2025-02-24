@@ -1,4 +1,4 @@
 name: DeathLog
 version: '1.1.1'
-main: io.github.math0898.deathLog.DeathLog
+main: io.github.math0898.deathlog.DeathLog
 api-version: '1.21'

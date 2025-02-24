@@ -31,5 +31,6 @@ public final class DeathLog extends JavaPlugin {
     public void onEnable () {
         plugin = this;
         Bukkit.getPluginManager().registerEvents(new PlayerDeathListener(), this);
+        Bukkit.getPluginManager().registerEvents(LastWords.getInstance(), this);
     }
 }
