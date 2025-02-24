@@ -1,9 +1,18 @@
 package io.github.math0898.deathlog.commands;
 
+import com.mojang.brigadier.Command;
+import com.mojang.brigadier.context.CommandContext;
+import io.github.math0898.deathlog.ConfigManager;
+import io.github.math0898.utils.Utils;
 import io.github.math0898.utils.commands.BetterCommand;
+import io.papermc.paper.command.brigadier.CommandSourceStack;
+import io.papermc.paper.command.brigadier.Commands;
+import io.papermc.paper.plugin.lifecycle.event.LifecycleEventManager;
+import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 
 import java.util.List;
 
@@ -20,6 +29,16 @@ public class DeathLogCommand extends BetterCommand {
      */
     public DeathLogCommand () {
         super("deathlog", ChatColor.DARK_GRAY + "[" + ChatColor.RED + "DL" + ChatColor.DARK_GRAY + "] ");
+        Commands.literal("deathlog").executes(this::onCommandExecute).build();
+    }
+
+    // todo: Refactor
+    public int onCommandExecute (CommandContext<CommandSourceStack> ctx) {
+        if (ctx.getSource().getSender().hasPermission("deathlog.reload")) {
+            ConfigManager.reInstantiate();
+            send(ctx.getSource().getSender(), "Config reloaded");
+        }
+        return Command.SINGLE_SUCCESS;
     }
 
     /**

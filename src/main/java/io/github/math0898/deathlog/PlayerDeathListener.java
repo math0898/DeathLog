@@ -22,9 +22,9 @@ public class PlayerDeathListener implements Listener {
      *
      * @param event The player death event to interact with.
      */
-    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true) // todo: Config values
     public void onPlayerDeath (PlayerDeathEvent event) {
-        Player player = event.getPlayer();
+        Player player = event.getPlayer(); // todo: Support colors and styles.
         Component lastWords = LastWords.getInstance().getLastWords(player.getUniqueId());
         if (lastWords == null)
             lastWords = Component.text("");

@@ -51,6 +51,8 @@ public class LastWords implements Listener {
      */
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onMessage (AsyncChatEvent event) {
+        ConfigManager manager = ConfigManager.getInstance();
+        if (!manager.isLastWordsEnabled() || !manager.isLastWordsMessages()) return;
         lastWords.put(event.getPlayer().getUniqueId(), event.message());
     }
 
@@ -61,6 +63,8 @@ public class LastWords implements Listener {
      */
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onCommandUse (PlayerCommandPreprocessEvent event) {
+        ConfigManager manager = ConfigManager.getInstance();
+        if (!manager.isLastWordsEnabled() || !manager.isLastWordsCommands()) return;
         lastWords.put(event.getPlayer().getUniqueId(), Component.text(event.getMessage().split(" ")[0]));
     }
 }

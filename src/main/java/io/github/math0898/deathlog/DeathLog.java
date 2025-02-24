@@ -1,5 +1,6 @@
 package io.github.math0898.deathlog;
 
+import io.github.math0898.deathlog.commands.DeathLogCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -32,5 +33,6 @@ public final class DeathLog extends JavaPlugin {
         plugin = this;
         Bukkit.getPluginManager().registerEvents(new PlayerDeathListener(), this);
         Bukkit.getPluginManager().registerEvents(LastWords.getInstance(), this);
+        new DeathLogCommand();
     }
 }
